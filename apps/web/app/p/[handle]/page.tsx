@@ -30,7 +30,7 @@ function truncate(str: string, head: number, tail: number): string {
 }
 
 function fmtDate(iso: string): string {
-  return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  return new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ handle: string }> }) {
@@ -184,7 +184,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ handle
               { label: 'Reputation', value: `${stats.reputation}` },
               { label: 'Soroban invocations', value: String(stats.invocations) },
               { label: 'Unique functions called', value: String(stats.uniqueFunctions) },
-              { label: 'First activity', value: oldest ? new Date(oldest.created_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : '—' },
+              { label: 'First activity', value: oldest ? new Date(oldest.created_at).toLocaleDateString(undefined, { month: 'short', year: 'numeric' }) : '—' },
               { label: 'Latest activity', value: newest ? fmtDate(newest.created_at) : '—' },
             ].map(({ label, value }) => (
               <div key={label} className="flex flex-col justify-center bg-[#0a0908] px-6 py-6">
